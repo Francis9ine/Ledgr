@@ -1,0 +1,6 @@
+{
+  "name": "Ledgr",
+  "description": "Personal finance and budgeting web app for tracking spending, managing savings goals, and monitoring investments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
