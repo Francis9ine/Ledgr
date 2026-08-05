@@ -114,7 +114,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Bottom Pinned Links & Security Badge */}
         <div className="p-3 border-t border-slate-100 dark:border-slate-800/60 space-y-1">
           <div className="px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-            Support & Account
+            Support
           </div>
           
           <button
@@ -132,15 +132,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <HelpCircle className="w-5 h-5 text-slate-400 dark:text-slate-500" />
             <span>Help Center</span>
           </button>
-
-          <button
-            onClick={onLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
-          >
-            <LogOut className="w-5 h-5 text-rose-500" />
-            <span>Log Out</span>
-          </button>
-
           {/* Bank Security Trust Pill */}
         </div>
       </aside>
