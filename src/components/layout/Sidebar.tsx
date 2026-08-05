@@ -142,10 +142,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </button>
 
           {/* Bank Security Trust Pill */}
-          <div className="mt-3 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-200/50 dark:border-slate-800 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-            <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-            <span className="truncate">256-Bit Encrypted Sync</span>
-          </div>
         </div>
       </aside>
     </>
