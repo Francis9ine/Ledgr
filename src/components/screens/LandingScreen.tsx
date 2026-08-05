@@ -83,20 +83,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
         </div>
 
         {/* Security & Trust Badges */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 dark:text-slate-400 font-medium">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-            <span>256-Bit AES Encryption</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-            <span>Read-Only Plaid Sync</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-            <span>Zero Data Selling</span>
-          </div>
-        </div>
 
         {/* Interactive App Mockup Preview Card */}
         <div className="mt-16 max-w-5xl mx-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-2xl overflow-hidden p-6 text-left">
