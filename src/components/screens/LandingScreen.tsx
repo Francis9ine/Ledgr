@@ -168,10 +168,10 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               style={{ animationDelay: '1.25s' }}
             >
               Simplify your finances
-              <br />
-              <span className="bg-emerald-600 text-white px-2 inline-block">[10x]</span>
-              <br />
-              without <span className="bg-emerald-600 text-white px-2 inline-block">[the stress]</span>.
+<br />
+<span className="bg-emerald-600 text-white px-2 inline-block">[10x]</span> without
+<br />
+<span className="bg-emerald-600 text-white px-2 inline-block">[the stress]</span>.
             </h1>
 
             <p
