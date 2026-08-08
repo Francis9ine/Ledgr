@@ -40,17 +40,17 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           <span className="font-bold text-xl tracking-tight">Ledgr</span>
         </div>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={onLogin}
-            className="text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-          >
-            Log In
-          </button>
-          <Button variant="primary" size="sm" onClick={onGetStarted}>
-            Get Started
-          </Button>
-        </div>
+        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-600 dark:text-slate-300">
+          <a href="#smart-cash-flow" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+            Smart Cash Flow
+          </a>
+          <a href="#goal-automation" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+            Goal Automation
+          </a>
+          <a href="#portfolio-tracking" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+            Portfolio Tracking
+          </a>
+        </nav>
       </header>
 
       {/* Hero Section */}
@@ -70,7 +70,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
         </p>
 
         {/* Hero CTAs */}
-        <div className="mt-8 flex items-center justify-center">
+        <div className="mt-8 flex items-center justify-center gap-3">
           <Button 
             variant="primary" 
             size="lg" 
@@ -79,6 +79,14 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             className="w-full sm:w-auto shadow-lg shadow-emerald-600/25 px-8"
           >
             Get Started Free
+          </Button>
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            onClick={onLogin}
+            className="w-full sm:w-auto px-8"
+          >
+            Log In
           </Button>
         </div>
 
@@ -119,7 +127,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
 
         {/* Feature Grid */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-6xl mx-auto">
-          <div className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+          <div id="smart-cash-flow" className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs scroll-mt-24">
             <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
               <TrendingUp className="w-5 h-5" />
             </div>
@@ -129,7 +137,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             </p>
           </div>
 
-          <div className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+          <div id="goal-automation" className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs scroll-mt-24">
             <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
               <Target className="w-5 h-5" />
             </div>
@@ -139,7 +147,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
             </p>
           </div>
 
-          <div className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+          <div id="portfolio-tracking" className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs scroll-mt-24">
             <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
               <PieChart className="w-5 h-5" />
             </div>
