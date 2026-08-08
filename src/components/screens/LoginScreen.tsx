@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Lock, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Mail, Lock, ArrowRight, ShieldCheck, CheckCircle2, Loader2 } from 'lucide-react';
 import { Button, Modal, ToggleSwitch } from '../common/UIComponents';
-import { getEmailError } from '../../utils/Emailvalidation';
+import { getEmailError, validateEmailFully } from '../../utils/Emailvalidation';
 
 interface LoginScreenProps {
   onLoginSubmit: (email: string) => void;
@@ -17,6 +17,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState<string | null>(null);
   const [emailTouched, setEmailTouched] = useState(false);
+  const [checkingEmail, setCheckingEmail] = useState(false);
 
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
@@ -25,8 +26,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotEmailError, setForgotEmailError] = useState<string | null>(null);
   const [forgotEmailTouched, setForgotEmailTouched] = useState(false);
+  const [checkingForgotEmail, setCheckingForgotEmail] = useState(false);
   const [resetSent, setResetSent] = useState(false);
 
+  // Fast format-only check while typing/blurring
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
@@ -38,13 +41,17 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     setEmailError(getEmailError(email));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Full check (format + real domain) on submit
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const validationError = getEmailError(email);
     setEmailTouched(true);
-    setEmailError(validationError);
 
-    if (validationError) return; // block submit — invalid email
+    setCheckingEmail(true);
+    const validationError = await validateEmailFully(email);
+    setCheckingEmail(false);
+
+    setEmailError(validationError);
+    if (validationError) return; // block submit — invalid email or fake domain
 
     onLoginSubmit(email);
   };
@@ -60,13 +67,16 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     setForgotEmailError(getEmailError(forgotEmail));
   };
 
-  const handleForgotSubmit = (e: React.FormEvent) => {
+  const handleForgotSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const validationError = getEmailError(forgotEmail);
     setForgotEmailTouched(true);
-    setForgotEmailError(validationError);
 
-    if (validationError) return; // block submit — invalid email
+    setCheckingForgotEmail(true);
+    const validationError = await validateEmailFully(forgotEmail);
+    setCheckingForgotEmail(false);
+
+    setForgotEmailError(validationError);
+    if (validationError) return; // block submit — invalid email or fake domain
 
     setResetSent(true);
   };
@@ -171,9 +181,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             variant="primary"
             size="lg"
             className="w-full mt-2"
-            icon={<ArrowRight className="w-4 h-4" />}
+            disabled={checkingEmail}
+            icon={checkingEmail ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
           >
-            Sign In & Continue
+            {checkingEmail ? 'Checking email...' : 'Sign In & Continue'}
           </Button>
         </form>
 
@@ -231,8 +242,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
               <Button variant="outline" size="sm" type="button" onClick={() => setShowForgotPassword(false)}>
                 Cancel
               </Button>
-              <Button variant="primary" size="sm" type="submit">
-                Send Reset Link
+              <Button variant="primary" size="sm" type="submit" disabled={checkingForgotEmail}>
+                {checkingForgotEmail ? 'Checking...' : 'Send Reset Link'}
               </Button>
             </div>
           </form>
