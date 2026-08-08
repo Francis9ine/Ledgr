@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Lock, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Button, Modal, ToggleSwitch } from '../common/UIComponents';
+import { getEmailError } from '../../utils/Emailvalidation';
 
 interface LoginScreenProps {
   onLoginSubmit: (email: string) => void;
@@ -14,21 +15,59 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   onDirectDemo,
 }) => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [emailTouched, setEmailTouched] = useState(false);
+
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+
   const [forgotEmail, setForgotEmail] = useState('');
+  const [forgotEmailError, setForgotEmailError] = useState<string | null>(null);
+  const [forgotEmailTouched, setForgotEmailTouched] = useState(false);
   const [resetSent, setResetSent] = useState(false);
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (emailTouched) setEmailError(getEmailError(value));
+  };
+
+  const handleEmailBlur = () => {
+    setEmailTouched(true);
+    setEmailError(getEmailError(email));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
-      onLoginSubmit(email);
-    }
+    const validationError = getEmailError(email);
+    setEmailTouched(true);
+    setEmailError(validationError);
+
+    if (validationError) return; // block submit — invalid email
+
+    onLoginSubmit(email);
+  };
+
+  const handleForgotEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setForgotEmail(value);
+    if (forgotEmailTouched) setForgotEmailError(getEmailError(value));
+  };
+
+  const handleForgotEmailBlur = () => {
+    setForgotEmailTouched(true);
+    setForgotEmailError(getEmailError(forgotEmail));
   };
 
   const handleForgotSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const validationError = getEmailError(forgotEmail);
+    setForgotEmailTouched(true);
+    setForgotEmailError(validationError);
+
+    if (validationError) return; // block submit — invalid email
+
     setResetSent(true);
   };
 
@@ -59,7 +98,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         </div>
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
           <div>
             <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
               Email Address
@@ -70,11 +109,19 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 type="email"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
+                onBlur={handleEmailBlur}
                 placeholder="you@example.com"
-                className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all"
+                className={`w-full pl-9 pr-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 transition-all ${
+                  emailError
+                    ? 'border-red-500 focus:ring-red-500/50'
+                    : 'border-slate-200 dark:border-slate-700 focus:ring-emerald-500/50'
+                }`}
               />
             </div>
+            {emailError && (
+              <p className="text-[11px] text-red-500 mt-1">{emailError}</p>
+            )}
           </div>
 
           <div>
@@ -86,6 +133,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 type="button"
                 onClick={() => {
                   setForgotEmail(email);
+                  setForgotEmailError(null);
+                  setForgotEmailTouched(false);
                   setResetSent(false);
                   setShowForgotPassword(true);
                 }}
@@ -154,7 +203,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         title="Reset Your Password"
       >
         {!resetSent ? (
-          <form onSubmit={handleForgotSubmit} className="space-y-4">
+          <form onSubmit={handleForgotSubmit} className="space-y-4" noValidate>
             <p className="text-xs text-slate-600 dark:text-slate-400">
               Enter the email address associated with your account, and we'll send a secure password reset link.
             </p>
@@ -166,9 +215,17 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 type="email"
                 required
                 value={forgotEmail}
-                onChange={(e) => setForgotEmail(e.target.value)}
-                className="w-full px-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white"
+                onChange={handleForgotEmailChange}
+                onBlur={handleForgotEmailBlur}
+                className={`w-full px-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 ${
+                  forgotEmailError
+                    ? 'border-red-500 focus:ring-red-500/50'
+                    : 'border-slate-200 dark:border-slate-700 focus:ring-emerald-500/50'
+                }`}
               />
+              {forgotEmailError && (
+                <p className="text-[11px] text-red-500 mt-1">{forgotEmailError}</p>
+              )}
             </div>
             <div className="flex justify-end gap-2 pt-2">
               <Button variant="outline" size="sm" type="button" onClick={() => setShowForgotPassword(false)}>
