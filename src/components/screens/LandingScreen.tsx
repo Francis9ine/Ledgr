@@ -30,9 +30,9 @@ const features = [
 ];
 
 const stats = [
-  { label: 'Total Net Worth', value: '$142,850.00', delta: 'Up +4.2% this month', positive: true },
-  { label: 'Monthly Budget', value: '$3,920 / $5,500', delta: '71% spent - on track', positive: false },
-  { label: 'Investments', value: '$78,420.50', delta: 'Up +12.4% YTD', positive: true },
+  { label: 'Total Net Worth', value: '₹142,850.00', delta: 'Up +4.2% this month', positive: true },
+  { label: 'Monthly Budget', value: '₹3,920 / ₹5,500', delta: '71% spent - on track', positive: false },
+  { label: 'Investments', value: '₹78,420.50', delta: 'Up +12.4% YTD', positive: true },
 ];
 
 export const LandingScreen: React.FC<LandingScreenProps> = ({ onGetStarted, onLogin }) => {
@@ -105,13 +105,13 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onGetStarted, onLo
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 border-t border-slate-200 dark:border-slate-800 pt-10">
           <div className="md:col-span-8">
             <div className="ledgr-content-in flex items-center gap-2 text-xs font-bold tracking-widest text-slate-500 dark:text-slate-400 mb-6" style={{ animationDelay: '1.15s' }}>
-              <span className="text-emerald-600 dark:text-emerald-400">[01]</span><span>TAKE CONTROL OF YOUR MONEY</span>
+              <span className="text-emerald-600 dark:text-emerald-400">!</span><span>TAKE CONTROL OF YOUR MONEY</span>
             </div>
             <h1 className="ledgr-content-in text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.05] text-slate-900 dark:text-white" style={{ animationDelay: '1.25s' }}>
               Simplify your finances <span className="bg-emerald-600 text-white px-2 inline-block">[10x]</span>{' '}without <span className="bg-emerald-600 text-white px-2 inline-block">[the stress]</span>.
             </h1>
             <p className="ledgr-content-in mt-6 max-w-xl text-slate-600 dark:text-slate-300 text-base md:text-lg font-normal leading-relaxed" style={{ animationDelay: '1.35s' }}>
-              We built a single, bank-grade ledger that handles your cash flow, savings goals, and investments - so you can focus on your life, not your spreadsheets.
+              I built a single, bank-grade ledger that handles your cash flow, savings goals, and investments - so you can focus on your life, not your spreadsheets.
             </p>
             <div className="ledgr-content-in mt-8 max-w-md border-y border-slate-300 dark:border-slate-700" style={{ animationDelay: '1.45s' }}>
               <div className="flex divide-x divide-slate-300 dark:divide-slate-700">
