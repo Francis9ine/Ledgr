@@ -91,7 +91,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
         }
       `}</style>
 
-<<<<<<< HEAD
       {/* Intro curtain — pure CSS, self-clears even if React re-renders */}
       <div className="ledgr-intro-overlay fixed inset-0 z-[999] flex" aria-hidden="true">
         <div className="ledgr-intro-panel flex-1 bg-emerald-600" style={{ animationDelay: '0.9s' }} />
@@ -99,19 +98,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           <span className="ledgr-intro-logo text-white font-black text-3xl md:text-5xl tracking-tight">
             Ledgr<span className="align-super text-base">®</span>
           </span>
-=======
-      {!introDone && (
-        <div className="fixed inset-0 z-50 flex" aria-hidden="true">
-          {[0, 1, 2].map((index) => (
-            <div
-              key={index}
-              className="ledgr-intro-panel flex-1 bg-emerald-600 flex items-center justify-center"
-              style={{ animationDelay: `₹{0.9 + index * 0.08}s` }}
-            >
-              {index === 1 && <span className="text-white font-black text-3xl md:text-5xl tracking-tight">Ledgr</span>}
-            </div>
-          ))}
->>>>>>> 1fdde970edb941db3a27c7b5bbb4a1e8e8c7aaec
         </div>
         <div className="ledgr-intro-panel flex-1 bg-emerald-600" style={{ animationDelay: '1.06s' }} />
       </div>
@@ -177,7 +163,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               <span>TAKE CONTROL OF YOUR MONEY</span>
             </div>
 
-<<<<<<< HEAD
             <h1
               className="ledgr-content-in text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.05] text-slate-900 dark:text-white"
               style={{ animationDelay: '1.25s' }}
@@ -212,13 +197,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
                 >
                   Sign In
                 </button>
-=======
-          <div className="md:col-span-4 ledgr-content-in" style={{ animationDelay: '1.55s' }}>
-            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-xl overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800"><span className="text-[11px] text-slate-400 font-mono">ledgr.app/dashboard</span><span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">Live</span></div>
-              <div className="divide-y divide-slate-100 dark:divide-slate-800">
-                {stats.map((stat) => <div key={stat.label} className="px-4 py-3"><p className="text-[11px] text-slate-500 dark:text-slate-400">{stat.label}</p><p className="text-lg font-bold text-slate-900 dark:text-white mt-0.5">{stat.value}</p><p className={`text-[11px] mt-1 font-medium ₹{stat.positive ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`}>{stat.delta}</p></div>)}
->>>>>>> 1fdde970edb941db3a27c7b5bbb4a1e8e8c7aaec
               </div>
             </div>
           </div>
