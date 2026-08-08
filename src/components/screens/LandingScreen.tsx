@@ -159,7 +159,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               className="ledgr-content-in flex items-center gap-2 text-xs font-bold tracking-widest text-slate-500 dark:text-slate-400 mb-6"
               style={{ animationDelay: '1.15s' }}
             >
-              <span className="text-emerald-600 dark:text-emerald-400">[01]</span>
+              <span className="text-emerald-600 dark:text-emerald-400">*</span>
               <span>TAKE CONTROL OF YOUR MONEY</span>
             </div>
 
@@ -178,7 +178,7 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               className="ledgr-content-in mt-6 max-w-xl text-slate-600 dark:text-slate-300 text-base md:text-lg font-normal leading-relaxed"
               style={{ animationDelay: '1.35s' }}
             >
-              We built a single, bank-grade ledger that handles your cash flow, savings goals, and investments — so you can focus on your life, not your spreadsheets.
+              I've built a single, bank-grade ledger that handles your cash flow, savings goals, and investments — so you can focus on your life, not your spreadsheets.
             </p>
 
             <div
