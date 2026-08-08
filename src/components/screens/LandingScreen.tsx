@@ -167,8 +167,10 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               className="ledgr-content-in text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight leading-[1.05] text-slate-900 dark:text-white"
               style={{ animationDelay: '1.25s' }}
             >
-              Simplify your finances{' '}
-              <span className="bg-emerald-600 text-white px-2 inline-block">[10x]</span>{' '}
+              Simplify your finances
+              <br />
+              <span className="bg-emerald-600 text-white px-2 inline-block">[10x]</span>
+              <br />
               without <span className="bg-emerald-600 text-white px-2 inline-block">[the stress]</span>.
             </h1>
 
@@ -213,8 +215,8 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           </span>
         </div>
 
-        {/* Live stats section, below the wordmark */}
-        <div className="ledgr-content-in max-w-3xl mx-auto -mt-6 md:-mt-10 relative z-10" style={{ animationDelay: '1.7s' }}>
+        {/* Live stats dashboard — now sits where the feature grid used to be */}
+        <div className="ledgr-content-in max-w-3xl mx-auto mt-4 md:mt-8 relative z-10" style={{ animationDelay: '1.7s' }}>
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-xl overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 dark:border-slate-800">
               <span className="text-[11px] text-slate-400 font-mono">ledgr.app/dashboard</span>
@@ -234,27 +236,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Feature Grid */}
-        <div className="ledgr-content-in mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left" style={{ animationDelay: '1.85s' }}>
-          {navFeatures.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={feature.id}
-                className="p-6 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs"
-              >
-                <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{feature.label}</h3>
-                <p className="mt-2 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            );
-          })}
         </div>
       </main>
     </div>
