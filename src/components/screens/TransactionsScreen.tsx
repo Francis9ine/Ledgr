@@ -68,6 +68,10 @@ export const TransactionsScreen: React.FC<TransactionsScreenProps> = ({
     currentPage * itemsPerPage
   );
 
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedCategory, selectedAccount, selectedType]);
+
   const handleCreateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMerchant || !newAmount) return;

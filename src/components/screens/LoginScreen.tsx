@@ -16,6 +16,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 }) => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
   const [emailTouched, setEmailTouched] = useState(false);
   const [checkingEmail, setCheckingEmail] = useState(false);
 
@@ -52,6 +53,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
 
     setEmailError(validationError);
     if (validationError) return; // block submit — invalid email or fake domain
+
+    if (!password.trim()) {
+      setPasswordError('Please enter your password.');
+      return;
+    }
 
     onLoginSubmit(email);
   };
@@ -159,11 +165,21 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 type="password"
                 required
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (passwordError) setPasswordError(null);
+                }}
                 placeholder="••••••••"
-                className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all"
+                className={`w-full pl-9 pr-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 transition-all ${
+                  passwordError
+                    ? 'border-red-500 focus:ring-red-500/50'
+                    : 'border-slate-200 dark:border-slate-700 focus:ring-emerald-500/50'
+                }`}
               />
             </div>
+            {passwordError && (
+              <p className="text-[11px] text-red-500 mt-1">{passwordError}</p>
+            )}
           </div>
 
           <div className="flex items-center justify-between pt-1">
@@ -185,6 +201,16 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
             icon={checkingEmail ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
           >
             {checkingEmail ? 'Checking email...' : 'Sign In & Continue'}
+          </Button>
+
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            className="w-full"
+            onClick={onDirectDemo}
+          >
+            Continue with Demo
           </Button>
         </form>
 

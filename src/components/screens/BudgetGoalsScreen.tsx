@@ -51,7 +51,9 @@ export const BudgetGoalsScreen: React.FC<BudgetGoalsScreenProps> = ({
 
   const totalAllocated = budgets.reduce((sum, b) => sum + b.allocated, 0);
   const totalSpent = budgets.reduce((sum, b) => sum + b.spent, 0);
-  const overallPercent = Math.min(Math.round((totalSpent / totalAllocated) * 100), 100);
+  const overallPercent = totalAllocated > 0
+    ? Math.min(Math.round((totalSpent / totalAllocated) * 100), 100)
+    : 0;
 
   const handleDepositSubmit = (e: React.FormEvent) => {
     e.preventDefault();
