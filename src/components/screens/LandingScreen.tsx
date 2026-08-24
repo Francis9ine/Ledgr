@@ -220,9 +220,6 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-xl overflow-hidden">
             <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 dark:border-slate-800">
               <span className="text-[11px] text-slate-400 font-mono">ledgr.app/dashboard</span>
-              <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">
-                Live
-              </span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100 dark:divide-slate-800">
               {stats.map((s) => (
